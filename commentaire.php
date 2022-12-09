@@ -19,8 +19,6 @@
     session_start();
     $loginSession=$_SESSION['login'];
     $passwordSession=$_SESSION['password'];
-    $idSession=$_SESSION['id'];
-    echo $loginSession,$passwordSession,$idSession;
     // connexion db
     require 'connect_db.php' ;
 
@@ -28,19 +26,23 @@
     if(isset($loginSession) AND isset($passwordSession) ){
         
         if (isset($_POST['ValidCom'])) {//si on appuie sur le bouton
-            $commentaire=$_POST['message'];
+            
             $sql="SELECT `id` FROM `utilisateurs` WHERE `login` = '$loginSession' AND `password` = '$passwordSession'"; 
             $query = $mysqli->query($sql);
             $users=$query->fetch_all();
-            var_dump($users);
-            echo $commentaire,$users['id'];
-            /*$sql = "INSERT INTO `commentaires`(`commentaire`, `id_utilisateur`) VALUES ('$commentaire', '$idSession')"; //ajoute login password dans db
+            //id récupéré par la quete est dans une array dans une array, d'ou la syntaxe "$users[0][0]" resultat var dump : Array ( [0] => Array ( [0] => 4 ) )
+            $id_utilisateur=$users[0][0];
+            $commentaire=$_POST['message'];
+            
+           $date = date('d-m-y h:i:s');
+            echo $commentaire,$id_utilisateur,$date;
+            $sql = "INSERT INTO `commentaires`(`commentaire`, `id_utilisateur`,`date`) VALUES  ('$commentaire', '$id_utilisateur','$date')";
             if ($mysqli->query($sql) === TRUE) {//si requete réussit
                 header('Location:http://localhost/Livre-or/Livre-or.php');
             }
             else{
                 $message="<error>Requete échoué</error>";
-            }*/
+            }
 
         }
     }   

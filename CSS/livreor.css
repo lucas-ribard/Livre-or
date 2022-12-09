@@ -27,9 +27,12 @@ space{
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
 }
-com{
+#com{
     font-family: 'Dancing Script', cursive;
     font-size: larger;
+    overflow-wrap:break-word;
+    max-width:300px;
+
 }
 
 error{
@@ -63,19 +66,23 @@ error{
     background-color: white;
    
 }
+
 table{
     width: 100%;
 }
+
+
 table,td{
     padding : 1% 2% 1%; 
-    
     background-color: white;
     color:black;
+    
 }
 table,th,tr {
     padding: 10px;
     border: 1px solid black;
-    border-collapse: collapse;
+    border-collapse: collapse;    
+    
 }
 table,th,thead {
     background-color: #333;

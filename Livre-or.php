@@ -84,21 +84,22 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Posté le :</th>
+                        <th id="headTab">Posté le :</th>
                         <th colspan="2">Par l'utilisateur</th>
                         <th>Commentaires</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                        while ($result !=NULL){
-                            echo "<tr>";
-                            echo "<td>",$date,"</td>";
-                            ?><td><img src="images/icon.png" width="30px"><?php                            
-                            echo "<td>",$result['login'],"</td>";
-                            echo "<td><com>",$result['commentaire'],"</com></td>";
-                            echo "</tr>";
-                            $result = mysqli_fetch_assoc($request);
+                        while ($result !=NULL){//refaire , l'affichage n'est pas bon
+                            ?>
+                            <tr>
+                            <td><?php echo $date?></td>
+                            <td><img src="images/icon.png" width="30px">                         
+                            <td><?php  echo $result['login'] ?> </td>
+                            <td id="com"><?php echo $result['commentaire']?></com></td>
+                            </tr>
+                            <?php $result = mysqli_fetch_assoc($request);
                         }
                        
                     ?>

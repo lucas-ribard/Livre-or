@@ -52,7 +52,7 @@
             if($password1===$password2 ){   //verif que les mots de passe sont identiques
 
                 $loginDispo=false;
-                //parcours les utilisateur pour verifier qu'il n'existe pas déja (merci Aurélie)
+                //parcours les utilisateur pour verifier qu'il n'existe pas déja 
                 foreach($users as $user){
                     if($_POST['login'] == $user[1]){
                         $message="<br><error>Cet Utilisateur existe déja</error><br>"; //login existe deja
@@ -126,8 +126,11 @@
     </ul>
     <!--  fin menu nav -->
 
+    
     <div id="form"> 
         <div id="box">
+            <h2>Bienvenue <?php echo $loginSession; ?></h2><br>
+            Ici vous pouvez changer vos identifiants<br><br>
             <form action="" method="post">
                 <label for="login">Login :</label><br>  
                 <input type="text"  name="login" value="<?php echo $result['login']; ?>" size="30" required><br>
