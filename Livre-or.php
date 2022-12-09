@@ -13,10 +13,6 @@
     $request = mysqli_query($mysqli,$sql);
     $result = mysqli_fetch_assoc($request);    
 
-    //recupere la date et la réarange en jour-mois-année
-    $dateOld = $result['date'];
-    $date =  date('d-m-Y', strtotime($dateOld));
-
     if (!empty($login) ){
         $link="commentaire.php";
         $message= "Ecrire dans le livre d'or";
@@ -92,6 +88,11 @@
                     while ($result !=NULL){      
                     ?>
                     <tr>
+                    <?php
+                    //recupere la date et la réarange en jour-mois-année    déplacé dans la boucle sinon tout les commentaire ont la date du dernier.
+                    $dateOld = $result['date'];
+                    $date =  date('d-m-Y', strtotime($dateOld));
+                    ?> 
                     <td><?php echo $date?></td>
                     <td><img src="images/icon.png" width="30px">                         
                     <td><?php  echo $result['login'] ?> </td>
