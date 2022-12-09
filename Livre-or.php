@@ -8,16 +8,14 @@
     // connexion db
     require 'connect_db.php' ;
 
-    //recup toute les données des tableaux d'utilisateur et commentaire si la ligne id et id_utilisateur on la meme valeur                      
+    //recup toute les données des tableaux d'utilisateur et commentaire si la ligne id et id_utilisateur on la meme valeur  Rangé par date                   
     $sql = "SELECT * FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY date DESC";
     $request = mysqli_query($mysqli,$sql);
-    $result = mysqli_fetch_assoc($request);
+    $result = mysqli_fetch_assoc($request);    
 
     //recupere la date et la réarange en jour-mois-année
-    $date = $result['date'];
-    $date =  date('d-m-Y', strtotime($date));
-    //var_dump($result);
-
+    $dateOld = $result['date'];
+    $date =  date('d-m-Y', strtotime($dateOld));
 
     if (!empty($login) ){
         $link="commentaire.php";
@@ -91,17 +89,16 @@
                 </thead>
                 <tbody>
                 <?php
-                        while ($result !=NULL){//refaire , l'affichage n'est pas bon
-                            ?>
-                            <tr>
-                            <td><?php echo $date?></td>
-                            <td><img src="images/icon.png" width="30px">                         
-                            <td><?php  echo $result['login'] ?> </td>
-                            <td id="com"><?php echo $result['commentaire']?></com></td>
-                            </tr>
-                            <?php $result = mysqli_fetch_assoc($request);
-                        }
-                       
+                    while ($result !=NULL){      
+                    ?>
+                    <tr>
+                    <td><?php echo $date?></td>
+                    <td><img src="images/icon.png" width="30px">                         
+                    <td><?php  echo $result['login'] ?> </td>
+                    <td id="com"><?php echo $result['commentaire']?></com></td>
+                    </tr>
+                    <?php $result = mysqli_fetch_assoc($request);
+                                }
                     ?>
                 </tbody>
             </table>

@@ -34,7 +34,10 @@
             $id_utilisateur=$users[0][0];
             $commentaire=$_POST['message'];
             
-           $date = date('d-m-y h:i:s');
+            //met la timezone de paris
+            date_default_timezone_set('Europe/Paris');
+            $date = date('Y-m-d H:i:s');
+
             echo $commentaire,$id_utilisateur,$date;
             $sql = "INSERT INTO `commentaires`(`commentaire`, `id_utilisateur`,`date`) VALUES  ('$commentaire', '$id_utilisateur','$date')";
             if ($mysqli->query($sql) === TRUE) {//si requete réussit
