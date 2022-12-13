@@ -37,6 +37,7 @@
             //met la timezone de paris
             date_default_timezone_set('Europe/Paris');
             $date = date('Y-m-d H:i:s');
+            $commentaire = mysqli_real_escape_string($mysqli,htmlspecialchars($commentaire)); 
 
             echo $commentaire,$id_utilisateur,$date;
             $sql = "INSERT INTO `commentaires`(`commentaire`, `id_utilisateur`,`date`) VALUES  ('$commentaire', '$id_utilisateur','$date')";
